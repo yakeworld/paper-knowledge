@@ -29,6 +29,7 @@ paper:
   year: 2020
   publication_date: "2020-01-01"
   citations: 2667
+  references: 66
   type: "Original Research | Medical AI | Deep Learning | Clinical Validation"
   keywords:
     - "Breast cancer screening"
@@ -36,6 +37,34 @@ paper:
     - "Deep learning"
     - "Mammography"
     - "Clinical validation"
+
+bibliographic:
+  source: "Semantic Scholar API"
+  fetched: "2026-06-26"
+  title: "International evaluation of an AI system for breast cancer screening"
+  authors_count: 85
+  authors_et_al: true
+  venue: "Nature"
+  volume: 577
+  pages: "89–94"
+  year: 2020
+  doi: "10.1038/s41586-019-1799-6"
+  pmid: "31894144"
+  publication_date: "2020-01-01"
+  citation_count: 2667
+  reference_count: 66
+  fields_of_study:
+    - "Medicine"
+  external_ids:
+    semantic_scholar: "acb0b04bf282a5a04bd2ca050d8be3dec78a4668"
+    pubmed: "31894144"
+    mag: "2998175747"
+    corpus_id: 209523468
+  tldr: "A robust assessment of the AI system paves the way for clinical trials to improve the accuracy and efficiency of breast cancer screening and using a combination of AI and human inputs could help to improve screening efficiency."
+  journal:
+    name: "Nature"
+    volume: 577
+    pages: "89–94"
 
 # ============================================================================
 # 模块 0：全文概要
