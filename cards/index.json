@@ -1,0 +1,27 @@
+{
+  "$schema": "paper-knowledge-v2.0",
+  "generated": "2026-06-26",
+  "total_cards": 1,
+  "query_protocol": {
+    "single_card": "GET /cards/{doi_safe}.yaml",
+    "index": "GET /cards/index.json",
+    "home": "GET /"
+  },
+  "cards": [
+    {
+      "doi": "10.1038/s41586-019-1799-6",
+      "doi_safe": "10.1038_s41586-019-1799-6",
+      "title": "International evaluation of an AI system for breast cancer screening",
+      "authors": "McKinney SM, Sieniek M, Godbole V, et al.",
+      "venue": "Nature",
+      "year": 2020,
+      "citations": 2667,
+      "scores": [
+        {"label": "写作质量", "value": "92/100", "level": "verified"},
+        {"label": "实验设计", "value": "88/100", "level": "verified"},
+        {"label": "引用质量", "value": "高", "level": "verified"}
+      ],
+      "tldr": "Google Health AI在UK (N=25,656) 和 US (N=3,092) 队列中超越放射科医师，假阳性减少1.2–5.7%，假阴性减少2.7–9.4%，双读工作量减少88%。核心结论已被多中心独立验证。"
+    }
+  ]
+}

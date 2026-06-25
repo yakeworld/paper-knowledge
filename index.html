@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paper Knowledge Base</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; background: #fafafa; }
+  h1 { color: #1a1a2e; border-bottom: 3px solid #e94560; padding-bottom: 10px; }
+  h2 { color: #16213e; margin-top: 30px; }
+  pre { background: #1a1a2e; color: #e8e8e8; padding: 16px; border-radius: 8px; overflow-x: auto; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; }
+  .card { background: white; border-radius: 8px; padding: 16px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .card h3 { margin: 0 0 8px 0; }
+  .card .meta { color: #666; font-size: 0.9em; }
+  .tag { display: inline-block; background: #e94560; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 4px; }
+  .tag.verified { background: #2ecc71; }
+  .tag.caution { background: #f39c12; }
+  .tag.retracted { background: #e74c3c; }
+  .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #888; }
+  .quick-link { display: inline-block; background: #16213e; color: white; text-decoration: none; padding: 4px 12px; border-radius: 4px; margin: 2px; font-size: 0.9em; }
+  .quick-link:hover { background: #e94560; }
+</style>
+</head>
+<body>
+<h1>📚 Paper Knowledge Base</h1>
+<p>结构化文献知识卡片库 — AI 可查询的论文深度评析</p>
+
+<h2>🔍 AI 查询协议</h2>
+<pre>GET /cards/{doi}.yaml   → 返回结构化知识卡片
+GET /cards/index.json   → 全库索引
+GET /                   → 人类可读首页</pre>
+
+<h2>📖 卡片示例</h2>
+
+<div id="card-list">
+  <p>加载中...</p>
+</div>
+
+<h2>🧩 卡片结构（五模块）</h2>
+<ol>
+  <li><strong>写作质量评估</strong> — Introduction CARDS 模型逐段分析, Discussion 理论体系</li>
+  <li><strong>实验设计评估</strong> — 规范性逐项验证</li>
+  <li><strong>结果认证与知识提取</strong> — 数值验证 + 结构化知识</li>
+  <li><strong>引用质量检查</strong> — 引用得当性 + 框架设计</li>
+  <li><strong>活卡片补充</strong> — 最新进展追踪 + 相关文献推荐</li>
+</ol>
+
+<h2>📋 使用规则</h2>
+<ul>
+  <li>✅ 知识提取和结构化可安全复用</li>
+  <li>✅ 已验证数值可直接引用</li>
+  <li>⚠️ 分析文本建议改写后使用</li>
+  <li>❌ 不分发原始 PDF 全文</li>
+  <li>❌ 不侵犯原始版权</li>
+</ul>
+
+<div class="footer">
+  <p>Powered by <a href="https://github.com/yakeworld/paper-knowledge">paper-knowledge</a> | Synthos Research Pipeline</p>
+</div>
+
+<script>
+fetch('/cards/index.json')
+  .then(r => r.json())
+  .then(data => {
+    const html = data.cards.map(c => `
+      <div class="card">
+        <h3>${c.title}</h3>
+        <div class="meta">${c.authors} · ${c.venue} (${c.year}) · DOI: ${c.doi}</div>
+        <div>
+          ${c.scores.map(s => `<span class="tag ${s.level}">${s.label}: ${s.value}</span>`).join(' ')}
+        </div>
+        <p>${c.tldr}</p>
+        <div>
+          <a class="quick-link" href="/cards/${c.doi_safe}.yaml">📄 YAML 卡片</a>
+          <a class="quick-link" href="https://doi.org/${c.doi}" target="_blank">🔗 原文</a>
+        </div>
+      </div>
+    `).join('');
+    document.getElementById('card-list').innerHTML = html || '<p>暂无卡片</p>';
+  })
+  .catch(e => {
+    document.getElementById('card-list').innerHTML = '<p>加载失败</p>';
+  });
+</script>
+</body>
+</html>
