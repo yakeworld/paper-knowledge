@@ -58,9 +58,9 @@
 <h2 style="margin-top: 2rem;">🔍 AI 查询协议</h2>
 <div class="api-note">
   <span class="comment"># 查询所有卡片（索引）</span><br>
-  <code>GET /cards/index.json</code><br><br>
+  <code>GET cards/index.json</code><br><br>
   <span class="comment"># 查询单篇卡片（返回完整的论文复现）</span><br>
-  <code>GET /cards/{doi_safe}.yaml</code><br><br>
+  <code>GET cards/{doi_safe}.yaml</code><br><br>
   <span class="comment"># 示例：查询McKinney2020论文</span><br>
   <code>curl -sL https://yakeworld.github.io/paper-knowledge/cards/10.1038_s41586-019-1799-6.yaml</code><br><br>
   <span class="comment"># 返回：36KB 结构化 YAML，覆盖全文8个章节</span>
@@ -73,7 +73,7 @@
 </div>
 
 <script>
-fetch('/cards/index.json')
+fetch('cards/index.json')
   .then(r => r.json())
   .then(data => {
     let html = '';
@@ -92,7 +92,7 @@ fetch('/cards/index.json')
         </div>
         <div class="section-list">${sections}</div>
         <div style="margin-top: 1rem;">
-          <a class="badge badge-blue" href="/cards/${c.doi_safe}.yaml" style="text-decoration:none;">📄 查看完整卡片 (YAML)</a>
+          <a class="badge badge-blue" href="cards/${c.doi_safe}.yaml" style="text-decoration:none;">📄 查看完整卡片 (YAML)</a>
           <a class="badge badge-green" href="https://doi.org/${c.doi}" target="_blank" style="text-decoration:none;">🔗 原文 DOI</a>
         </div>
         <p style="color: var(--muted); margin-top: .75rem; font-size: .85rem;">${c.tldr}</p>
