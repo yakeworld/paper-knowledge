@@ -3,84 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Knowledge Base</title>
+<title>Paper Knowledge Base — 可信文献知识库</title>
 <style>
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #333; background: #fafafa; }
-  h1 { color: #1a1a2e; border-bottom: 3px solid #e94560; padding-bottom: 10px; }
-  h2 { color: #16213e; margin-top: 30px; }
-  pre { background: #1a1a2e; color: #e8e8e8; padding: 16px; border-radius: 8px; overflow-x: auto; }
-  code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; }
-  .card { background: white; border-radius: 8px; padding: 16px; margin: 12px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-  .card h3 { margin: 0 0 8px 0; }
-  .card .meta { color: #666; font-size: 0.9em; }
-  .tag { display: inline-block; background: #e94560; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em; margin-right: 4px; }
-  .tag.verified { background: #2ecc71; }
-  .tag.caution { background: #f39c12; }
-  .tag.retracted { background: #e74c3c; }
-  .footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #888; }
-  .quick-link { display: inline-block; background: #16213e; color: white; text-decoration: none; padding: 4px 12px; border-radius: 4px; margin: 2px; font-size: 0.9em; }
-  .quick-link:hover { background: #e94560; }
+  :root { --bg: #0f172a; --card: #1e293b; --accent: #3b82f6; --text: #e2e8f0; --muted: #94a3b8; --green: #4ade80; --gold: #f59e0b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Noto Sans SC', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 2rem; margin-bottom: .5rem; }
+  h1 span { color: var(--accent); }
+  .subtitle { color: var(--muted); margin-bottom: 1rem; }
+  .badge { display: inline-block; padding: .25rem .75rem; border-radius: 20px; font-size: .8rem; margin: .25rem; }
+  .badge-blue { background: #1e3a5f; color: #93c5fd; }
+  .badge-green { background: #14532d; color: #4ade80; }
+  .badge-gold { background: #713f12; color: #fbbf24; }
+  .badge-red { background: #7f1d1d; color: #fca5a5; }
+  .card { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); }
+  .card-title { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; color: #f8fafc; }
+  .card-meta { color: var(--muted); font-size: .9rem; margin-bottom: .75rem; }
+  .section-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .5rem; margin: 1rem 0; }
+  .section-item { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: .75rem; font-size: .85rem; }
+  .section-item .label { color: var(--accent); font-weight: 600; }
+  .section-item .desc { color: var(--muted); margin-top: .25rem; }
+  .value-count { font-size: 2rem; font-weight: 700; color: var(--accent); }
+  .api-note { background: #172554; border: 1px solid #1e3a5f; border-radius: 8px; padding: 1rem; margin-top: 1.5rem; font-family: monospace; font-size: .85rem; }
+  .api-note code { color: var(--accent); }
+  .api-note .comment { color: #64748b; }
+  .footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; text-align: center; }
+  .footer a { color: var(--accent); }
 </style>
 </head>
 <body>
-<h1>📚 Paper Knowledge Base</h1>
-<p>结构化文献知识卡片库 — AI 可查询的论文深度评析</p>
+<div class="container">
+<h1>📚 Paper <span>Knowledge Base</span></h1>
+<p class="subtitle">结构化文献知识卡片库 — 全文级复现，AI可查询，版权合规</p>
 
-<h2>🔍 AI 查询协议</h2>
-<pre>GET /cards/{doi}.yaml   → 返回结构化知识卡片
-GET /cards/index.json   → 全库索引
-GET /                   → 人类可读首页</pre>
-
-<h2>📖 卡片示例</h2>
-
-<div id="card-list">
-  <p>加载中...</p>
+<div class="card">
+  <div class="card-title">✅ 知识卡片模型</div>
+  <p style="color: var(--muted); margin-bottom: 1rem;">每张卡片 = 论文全文的结构化、分析性复现，覆盖全部8个章节</p>
+  <div class="section-list">
+    <div class="section-item"><span class="label">① 摘要</span><div class="desc">全文分析性重述</div></div>
+    <div class="section-item"><span class="label">② 引言</span><div class="desc">3段逐段CARDS分析 + 全文复现</div></div>
+    <div class="section-item"><span class="label">③ 结果</span><div class="desc">7个子节，全部数值和数据</div></div>
+    <div class="section-item"><span class="label">④ 讨论</span><div class="desc">6段落+理论分析+优化建议</div></div>
+    <div class="section-item"><span class="label">⑤ 方法</span><div class="desc">3个模型架构+训练细节全复现</div></div>
+    <div class="section-item"><span class="label">⑥ 补充数据</span><div class="desc">混淆矩阵+读者比较+分子分型</div></div>
+    <div class="section-item"><span class="label">⑦ 引用分析</span><div class="desc">45篇引用4层框架评估</div></div>
+    <div class="section-item"><span class="label">⑧ 活卡片</span><div class="desc">2020-2026年进展追踪</div></div>
+  </div>
 </div>
 
-<h2>🧩 卡片结构（五模块）</h2>
-<ol>
-  <li><strong>写作质量评估</strong> — Introduction CARDS 模型逐段分析, Discussion 理论体系</li>
-  <li><strong>实验设计评估</strong> — 规范性逐项验证</li>
-  <li><strong>结果认证与知识提取</strong> — 数值验证 + 结构化知识</li>
-  <li><strong>引用质量检查</strong> — 引用得当性 + 框架设计</li>
-  <li><strong>活卡片补充</strong> — 最新进展追踪 + 相关文献推荐</li>
-</ol>
+<h2>📋 当前卡片</h2>
+<div id="card-list"></div>
 
-<h2>📋 使用规则</h2>
-<ul>
-  <li>✅ 知识提取和结构化可安全复用</li>
-  <li>✅ 已验证数值可直接引用</li>
-  <li>⚠️ 分析文本建议改写后使用</li>
-  <li>❌ 不分发原始 PDF 全文</li>
-  <li>❌ 不侵犯原始版权</li>
-</ul>
+<h2 style="margin-top: 2rem;">🔍 AI 查询协议</h2>
+<div class="api-note">
+  <span class="comment"># 查询所有卡片（索引）</span><br>
+  <code>GET /cards/index.json</code><br><br>
+  <span class="comment"># 查询单篇卡片（返回完整的论文复现）</span><br>
+  <code>GET /cards/{doi_safe}.yaml</code><br><br>
+  <span class="comment"># 示例：查询McKinney2020论文</span><br>
+  <code>curl -sL https://yakeworld.github.io/paper-knowledge/cards/10.1038_s41586-019-1799-6.yaml</code><br><br>
+  <span class="comment"># 返回：36KB 结构化 YAML，覆盖全文8个章节</span>
+</div>
 
 <div class="footer">
-  <p>Powered by <a href="https://github.com/yakeworld/paper-knowledge">paper-knowledge</a> | Synthos Research Pipeline</p>
+  <p>Powered by <a href="https://github.com/yakeworld/paper-knowledge">paper-knowledge</a> | Synthos Research Pipeline | 版权合规：基于《著作权法》第二十二条合理使用</p>
+</div>
+
 </div>
 
 <script>
 fetch('/cards/index.json')
   .then(r => r.json())
   .then(data => {
-    const html = data.cards.map(c => `
-      <div class="card">
-        <h3>${c.title}</h3>
-        <div class="meta">${c.authors} · ${c.venue} (${c.year}) · DOI: ${c.doi}</div>
-        <div>
-          ${c.scores.map(s => `<span class="tag ${s.level}">${s.label}: ${s.value}</span>`).join(' ')}
+    let html = '';
+    for (const c of data.cards) {
+      const sections = c.sections.map(s => {
+        const [label, desc] = s.split(': ');
+        return `<div class="section-item"><span class="label">${label}</span><div class="desc">${desc}</div></div>`;
+      }).join('');
+      html += `<div class="card">
+        <div class="card-title">${c.title}</div>
+        <div class="card-meta">${c.authors_short} · ${c.venue} (${c.year}) · 被引${c.citations}次</div>
+        <div style="margin-bottom: .75rem;">
+          <span class="badge badge-blue">📄 ${c.card_size_kb}KB</span>
+          <span class="badge badge-green">✅ 版权安全</span>
+          <span class="badge badge-gold">📊 ${c.value_count}个数值</span>
         </div>
-        <p>${c.tldr}</p>
-        <div>
-          <a class="quick-link" href="/cards/${c.doi_safe}.yaml">📄 YAML 卡片</a>
-          <a class="quick-link" href="https://doi.org/${c.doi}" target="_blank">🔗 原文</a>
+        <div class="section-list">${sections}</div>
+        <div style="margin-top: 1rem;">
+          <a class="badge badge-blue" href="/cards/${c.doi_safe}.yaml" style="text-decoration:none;">📄 查看完整卡片 (YAML)</a>
+          <a class="badge badge-green" href="https://doi.org/${c.doi}" target="_blank" style="text-decoration:none;">🔗 原文 DOI</a>
         </div>
-      </div>
-    `).join('');
-    document.getElementById('card-list').innerHTML = html || '<p>暂无卡片</p>';
+        <p style="color: var(--muted); margin-top: .75rem; font-size: .85rem;">${c.tldr}</p>
+      </div>`;
+    }
+    document.getElementById('card-list').innerHTML = html || '<p style="color: var(--muted);">暂无卡片</p>';
   })
   .catch(e => {
-    document.getElementById('card-list').innerHTML = '<p>加载失败</p>';
+    document.getElementById('card-list').innerHTML = '<p style="color: #fca5a5;">加载失败</p>';
   });
 </script>
 </body>
