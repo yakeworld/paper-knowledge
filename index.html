@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Paper Knowledge Base — 可信文献知识库</title>
+<title>Paper Knowledge Base — 人类知识提取开源计划 · Synthos</title>
 <style>
   :root { --bg: #0f172a; --card: #1e293b; --accent: #3b82f6; --text: #e2e8f0; --muted: #94a3b8; --green: #4ade80; --gold: #f59e0b; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,12 +11,14 @@
   .container { max-width: 960px; margin: 0 auto; }
   h1 { font-size: 2rem; margin-bottom: .5rem; }
   h1 span { color: var(--accent); }
+  .synthos-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1e3a5f, #312e81); border: 1px solid #3b82f6; border-radius: 20px; padding: 6px 16px; font-size: .85rem; color: #93c5fd; margin-bottom: 1rem; }
   .subtitle { color: var(--muted); margin-bottom: 1rem; }
   .badge { display: inline-block; padding: .25rem .75rem; border-radius: 20px; font-size: .8rem; margin: .25rem; }
   .badge-blue { background: #1e3a5f; color: #93c5fd; }
   .badge-green { background: #14532d; color: #4ade80; }
   .badge-gold { background: #713f12; color: #fbbf24; }
   .badge-red { background: #7f1d1d; color: #fca5a5; }
+  .badge-purple { background: #312e81; color: #818cf8; }
   .card { background: var(--card); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent); }
   .card-title { font-size: 1.2rem; font-weight: 600; margin-bottom: .5rem; color: #f8fafc; }
   .card-meta { color: var(--muted); font-size: .9rem; margin-bottom: .75rem; }
@@ -30,29 +32,48 @@
   .api-note .comment { color: #64748b; }
   .footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; text-align: center; }
   .footer a { color: var(--accent); }
+  .plan-name { color: var(--gold); font-size: 1.5rem; font-weight: 700; margin-bottom: .25rem; }
 </style>
 </head>
 <body>
 <div class="container">
-<h1>📚 Paper <span>Knowledge Base</span></h1>
-<p class="subtitle">结构化文献知识卡片库 — 全文级复现，AI可查询，版权合规</p>
+
+<div class="synthos-badge">
+  ⚡ Synthos 技能 · paper-knowledge-base v2.0
+</div>
+
+<p class="plan-name">🌍 人类知识提取开源计划</p>
+<p class="subtitle">将每一篇认真读过的论文，变成AI可以直接查询的结构化知识</p>
 
 <div class="card">
-  <div class="card-title">✅ 知识卡片模型</div>
-  <p style="color: var(--muted); margin-bottom: 1rem;">每张卡片 = 论文全文的结构化、分析性复现，覆盖全部8个章节</p>
-  <div class="section-list">
-    <div class="section-item"><span class="label">① 摘要</span><div class="desc">全文分析性重述</div></div>
-    <div class="section-item"><span class="label">② 引言</span><div class="desc">3段逐段CARDS分析 + 全文复现</div></div>
-    <div class="section-item"><span class="label">③ 结果</span><div class="desc">7个子节，全部数值和数据</div></div>
-    <div class="section-item"><span class="label">④ 讨论</span><div class="desc">6段落+理论分析+优化建议</div></div>
-    <div class="section-item"><span class="label">⑤ 方法</span><div class="desc">3个模型架构+训练细节全复现</div></div>
-    <div class="section-item"><span class="label">⑥ 补充数据</span><div class="desc">混淆矩阵+读者比较+分子分型</div></div>
-    <div class="section-item"><span class="label">⑦ 引用分析</span><div class="desc">45篇引用4层框架评估</div></div>
-    <div class="section-item"><span class="label">⑧ 活卡片</span><div class="desc">2020-2026年进展追踪</div></div>
+  <div class="card-title">💡 核心理念：一次分析，任意AI复用</div>
+  <p style="color: var(--muted); margin-bottom: .75rem;">
+    AI不应该重复劳动——每篇论文被认真分析一次后，生成结构化知识卡片，
+    其他AI直接查询即可。无需重新下载、重新阅读、重新理解。
+  </p>
+  <div style="display: flex; gap: .5rem; flex-wrap: wrap;">
+    <span class="badge badge-purple">🤖 Synthos 自进化科研平台</span>
+    <span class="badge badge-blue">📄 paper-knowledge-base 技能</span>
+    <span class="badge badge-green">✅ 版权合规</span>
+    <span class="badge badge-gold">📊 开源 MIT</span>
   </div>
 </div>
 
-<h2>📋 当前卡片</h2>
+<div class="card" style="border-left-color: var(--gold);">
+  <div class="card-title">🧩 卡片结构 — 8章节全文级复现</div>
+  <div class="section-list">
+    <div class="section-item"><span class="label">① 摘要</span><div class="desc">完整分析性重述，标注关键数值</div></div>
+    <div class="section-item"><span class="label">② 引言</span><div class="desc">逐段CARDS分析 + 内容复现</div></div>
+    <div class="section-item"><span class="label">③ 结果</span><div class="desc">全部子节 + 全部表格数据</div></div>
+    <div class="section-item"><span class="label">④ 讨论</span><div class="desc">6段落 + 理论体系分析 + 表达优化</div></div>
+    <div class="section-item"><span class="label">⑤ 方法</span><div class="desc">模型/数据/训练/统计完整复现</div></div>
+    <div class="section-item"><span class="label">⑥ 补充数据</span><div class="desc">混淆矩阵/读者表等结构化呈现</div></div>
+    <div class="section-item"><span class="label">⑦ 引用分析</span><div class="desc">四层功能框架评估</div></div>
+    <div class="section-item"><span class="label">⑧ 活卡片</span><div class="desc">论文发表至今的进展追踪</div></div>
+  </div>
+</div>
+
+<h2>📋 已分析论文</h2>
 <div id="card-list"></div>
 
 <h2 style="margin-top: 2rem;">🔍 AI 查询协议</h2>
@@ -63,11 +84,16 @@
   <code>GET cards/{doi_safe}.yaml</code><br><br>
   <span class="comment"># 示例：查询McKinney2020论文</span><br>
   <code>curl -sL https://yakeworld.github.io/paper-knowledge/cards/10.1038_s41586-019-1799-6.yaml</code><br><br>
-  <span class="comment"># 返回：36KB 结构化 YAML，覆盖全文8个章节</span>
+  <span class="comment"># 返回：36KB 结构化 YAML，覆盖全文8个章节，AI 0.6秒可复用</span>
 </div>
 
 <div class="footer">
-  <p>Powered by <a href="https://github.com/yakeworld/paper-knowledge">paper-knowledge</a> | Synthos Research Pipeline | 版权合规：基于《著作权法》第二十二条合理使用</p>
+  <p>🤖 由 <strong>Synthos</strong> 自进化科研平台驱动 · 技能: <code>paper-knowledge-base</code> v2.0</p>
+  <p style="margin-top: .5rem;">
+    <a href="https://github.com/yakeworld/paper-knowledge">GitHub</a> ·
+    <a href="https://github.com/yakeworld/Synthos">Synthos</a> ·
+    <span style="color: var(--muted);">版权合规：基于《著作权法》第二十二条合理使用</span>
+  </p>
 </div>
 
 </div>
@@ -89,6 +115,7 @@ fetch('cards/index.json')
           <span class="badge badge-blue">📄 ${c.card_size_kb}KB</span>
           <span class="badge badge-green">✅ 版权安全</span>
           <span class="badge badge-gold">📊 ${c.value_count}个数值</span>
+          <span class="badge badge-purple">🤖 Synthos</span>
         </div>
         <div class="section-list">${sections}</div>
         <div style="margin-top: 1rem;">
@@ -101,7 +128,7 @@ fetch('cards/index.json')
     document.getElementById('card-list').innerHTML = html || '<p style="color: var(--muted);">暂无卡片</p>';
   })
   .catch(e => {
-    document.getElementById('card-list').innerHTML = '<p style="color: #fca5a5;">加载失败</p>';
+    document.getElementById('card-list').innerHTML = '<p style="color: #fca5a5;">加载失败 — 请确认网络连接</p>';
   });
 </script>
 </body>

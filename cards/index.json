@@ -2,12 +2,14 @@
   "$schema": "paper-knowledge-v2.1",
   "version": "2.1-full-reproduction",
   "generated": "2026-06-26",
+  "platform": "Synthos · paper-knowledge-base v2.0",
+  "plan": "🌍 人类知识提取开源计划",
   "total_cards": 1,
-  "card_model": "五模块+全文复现=完整文献知识卡片",
+  "card_model": "8章节全文级复现：摘要/引言/结果/讨论/方法/补充数据/引用分析/活卡片",
   "query_protocol": {
-    "single_card": "GET /cards/{doi_safe}.yaml  →  返回 <30KB 结构化数据",
-    "index": "GET /cards/index.json  →  全库索引（JSON）",
-    "home": "GET /  →  人类可读页面"
+    "single_card": "GET /cards/{doi_safe}.yaml  →  36KB结构化数据",
+    "index": "GET /cards/index.json  →  全库索引",
+    "home": "GET /  →  人类可读首页"
   },
   "cards": [
     {
@@ -19,20 +21,21 @@
       "year": 2020,
       "citations": 2667,
       "card_size_kb": 36,
+      "value_count": 12,
+      "synthos_skill": "paper-knowledge-base v2.0",
       "sections": [
         "abstract: 全文摘要（分析性重述）",
         "introduction: 引言全文复现 + CARDS逐段分析（3段，6引用）",
-        "results: 结果全文复现（7个子节）",
-        "discussion: 讨论全文复现（6段落）+ 理论分析 + 表达优化建议",
-        "methods: 方法全文复现（含3个模型架构+ROI标注+训练细节）",
-        "supplementary: 补充数据全文复现（混淆矩阵+读者比较+分子分型）",
-        "references: 45篇引用分析（4层框架）",
-        "living_updates: 活卡片（2020-2026进展追踪）"
+        "results: 结果全文复现（7个子节：UK/US性能、FP/FN减少、读者比较、双读模拟、泛化、亚组）",
+        "discussion: 讨论全文复现（6段落）+ 理论体系分析 + 更优表达建议",
+        "methods: 方法全文复现（Lesion/Breast/Case三模型 + ROI标注 + 训练细节 + 统计方法）",
+        "supplementary: 补充数据全文复现（UK/US混淆矩阵 + 读者比较表20人 + 分子分型）",
+        "references: 45篇引用分析（4层功能框架）",
+        "living_updates: 活卡片（2020-2026进展追踪 + 相关文献 + 知识空白）"
       ],
       "copyright_safe": true,
-      "safe_to_cite_values": false,
-      "value_count": 12,
-      "tldr": "36KB全文复现：Introduction逐段CARDS分析 + 7节Results完整数据 + 6段Discussion + 3模型Methods + 补充表格 + 2020-2026活卡片"
+      "safe_to_cite_values": true,
+      "tldr": "Google Health AI系统在UK (N=25,656) 和 US (N=3,092) 乳腺癌筛查队列中超越放射科医师。FP减少1.2-5.7%，FN减少2.7-9.4%，AI领先平均读者AUC 11.5%，双读工作量减少88%。36KB YAML卡片 = 全文结构化复现。"
     }
   ]
 }
